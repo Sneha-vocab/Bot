@@ -1,0 +1,20 @@
+.env
+venv/
+.claude/
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+tests
+venv
+README.md
+certs.sh
+frontend/node_modules
+frontend/build
+
+# AI-agent
+.claude
+.agents
+skills-lock.json
+CLAUDE.md

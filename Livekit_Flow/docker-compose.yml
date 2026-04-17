@@ -1,0 +1,26 @@
+services:
+  bridge:
+    image: ${BRIDGE_IMAGE:-somashaker23/smartflo-bridge}:latest
+    container_name: smartflo-bridge
+    command:
+      - "smart-flo.smartflow_bridge:app"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8000"
+    entrypoint: ["python", "-m", "uvicorn"]
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  agent:
+    image: ${AGENT_IMAGE:-somashaker23/ltfs-agent-pl}:latest
+    container_name: hello-agent
+    command: ["python", "start_agent.py", "start"]
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - bridge
